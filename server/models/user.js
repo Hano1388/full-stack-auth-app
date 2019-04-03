@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'),
-      Schema   = mongoose.Schema;
+    { Schema } = mongoose;
 
 // Define the user model
 const userSchema = new Schema({
