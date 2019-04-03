@@ -7,6 +7,12 @@ const userToken = user => {
   return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 };
 
+exports.signin = (req, res, next) => {
+  // User has already had their email and password authenticated
+  // We just need to give them a token
+  res.send({ token: userToken(req.user) });
+}
+
 exports.signup = (req, res, next) => {
   const { email, password } = req.body;
 
