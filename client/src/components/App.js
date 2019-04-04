@@ -1,8 +1,13 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import Header from './Header';
 
 const App = () => {
   return (
-    <div className="ui container"> App component</div>
+    <BrowserRouter>
+      <Header />
+    </BrowserRouter>
   );
 }
 
