@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {
-  const [homeClass, setHomeClass] = useState('active item');
+  const [homeClass, setHomeClass] = useState('item');
   const [signinClass, setSinginClass] = useState('item');
   const [signupClass, setSignupClass] = useState('item');
   const [signoutClass, setSignoutClass] = useState('item');
 
   const changeClassNames = (className) => {
+    className = className || window.location.pathname.substr(1);
     className === 'home'? setHomeClass('active item') : setHomeClass('item');
     className === 'signin'? setSinginClass('active item') : setSinginClass('item');
     className === 'signup'? setSignupClass('active item') : setSignupClass('item');
     className === 'signout'? setSignoutClass('active item') : setSignoutClass('item');
   }
+
   return(
     <div className="ui container">
       <div className="ui four item pointing menu">
