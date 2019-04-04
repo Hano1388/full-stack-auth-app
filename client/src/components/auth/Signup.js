@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { signup } from '../../actions';
 
 class Signup extends Component {
 
@@ -11,10 +14,15 @@ class Signup extends Component {
       </div>
     );
   }
+
+  onFormSubmit = (formValues) => {
+    this.props.signup(formValues);
+  }
   render() {
+    const { handleSubmit } = this.props;
     return (
       <div className="ui segment">
-        <form>
+        <form onSubmit={handleSubmit(this.onFormSubmit)}>
             <Field
               name="email"
               type="email"
@@ -36,6 +44,7 @@ class Signup extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'signup'
-}) (Signup);
+export default compose (
+   connect(null, { signup }),
+   reduxForm({form: 'signup'})
+)(Signup);
