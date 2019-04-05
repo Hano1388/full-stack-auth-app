@@ -7,7 +7,7 @@ const Header = (props) => {
       <div className="ui five item pointing menu">
         <Link
           className="item"
-          to="/home"
+          to="/"
         >Redux auth</Link>
         <Link
           className="item"
