@@ -6,6 +6,7 @@ const Header = (props) => {
   const [signinClass, setSinginClass] = useState('item');
   const [signupClass, setSignupClass] = useState('item');
   const [signoutClass, setSignoutClass] = useState('item');
+  const [featureClass, setFeatureClass] = useState('item');
 
   const changeClassNames = (className) => {
     className = className || window.location.pathname.substr(1);
@@ -13,11 +14,12 @@ const Header = (props) => {
     className === 'signin'? setSinginClass('active item') : setSinginClass('item');
     className === 'signup'? setSignupClass('active item') : setSignupClass('item');
     className === 'signout'? setSignoutClass('active item') : setSignoutClass('item');
+    className === 'feature'? setFeatureClass('active item') : setFeatureClass('item');
   }
 
   return(
     <div className="ui container">
-      <div className="ui four item pointing menu">
+      <div className="ui five item pointing menu">
         <Link
           className={homeClass}
           onClick={() => changeClassNames('home') }
@@ -38,6 +40,11 @@ const Header = (props) => {
           onClick={() => changeClassNames('signout') }
           to="/signout"
         >Sign Out</Link>
+        <Link
+          className={featureClass}
+          onClick={() => changeClassNames('feature') }
+          to="/feature"
+        >Feature</Link>
       </div>
     </div>
   );

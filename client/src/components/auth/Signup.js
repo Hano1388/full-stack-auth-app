@@ -16,12 +16,24 @@ class Signup extends Component {
   }
 
   onFormSubmit = (formValues) => {
-    this.props.signup(formValues);
+    this.props.signup(formValues, () => {
+      this.props.history.push('/feature');
+      console.log(this.props.history);
+    });
+  }
+
+  renderErrors = () => {
+    if(this.props.errorMessage) {
+      return <div className="ui error message">{this.props.errorMessage}</div>;
+    } else {
+      return null;
+    }
   }
   render() {
     const { handleSubmit } = this.props;
     return (
       <div className="ui segment">
+         {this.renderErrors()}
         <form onSubmit={handleSubmit(this.onFormSubmit)}>
             <Field
               name="email"
@@ -44,7 +56,11 @@ class Signup extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { errorMessage: state.auth.errorMessage }
+}
+
 export default compose (
-   connect(null, { signup }),
+   connect(mapStateToProps, { signup }),
    reduxForm({form: 'signup'})
 )(Signup);
